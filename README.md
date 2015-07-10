@@ -1,2 +1,2 @@
 # Purpose:
-Project to get familiar with GitHub and pulishing to Azure
+This project is to get familiar with GitHub and pulishing a web API to Azure
