@@ -1,3 +1,2 @@
-# Purpose for this Repository
-
+# Purpose:
 Project to get familiar with GitHub and pulishing to Azure
