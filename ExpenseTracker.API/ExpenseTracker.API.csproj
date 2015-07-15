@@ -144,6 +144,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\ExpenseTracker.API%28ResourceGroupVisualStudio%29.pubxml" />
+    <None Include="Properties\PublishProfiles\expensetracker.pubxml" />
     <None Include="Properties\PublishProfiles\expensetrackerrg.pubxml" />
     <None Include="Properties\PublishProfiles\pluralsightexpensetrackerapi.pubxml" />
     <None Include="Properties\PublishProfiles\rgexpensetracker %282%29.pubxml" />
