@@ -8,7 +8,7 @@ namespace ExpenseTracker.Repository.Entities
     public partial class ExpenseTrackerContext : DbContext
     {
         public ExpenseTrackerContext()
-            : base("name=ExpenseTrackerContext")
+            : base("name=default")
         {
         }
 

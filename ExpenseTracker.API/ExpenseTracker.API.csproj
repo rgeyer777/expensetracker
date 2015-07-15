@@ -143,6 +143,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\expensetracker %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\expensetracker %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\ExpenseTracker.API%28ResourceGroupVisualStudio%29.pubxml" />
     <None Include="Properties\PublishProfiles\expensetracker.pubxml" />
     <None Include="Properties\PublishProfiles\expensetrackerrg.pubxml" />
