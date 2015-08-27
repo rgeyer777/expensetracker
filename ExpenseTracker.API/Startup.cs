@@ -1,9 +1,11 @@
-﻿using Microsoft.Owin;
+﻿using ExpenseTracker.API.Helpers;
+using Microsoft.Owin;
 using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Thinktecture.IdentityServer.AccessTokenValidation;
 
 
 [assembly: OwinStartup(typeof(ExpenseTracker.API.Startup))]
@@ -14,6 +16,15 @@ namespace ExpenseTracker.API
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseResourceAuthorization(new AuthorizationManager());
+
+            app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
+            {
+                Authority = ExpenseTrackerConstants.IdSrvBase,
+                RequiredScopes = new[] { "expensetrackerapi" }
+                
+            });
+
             app.UseWebApi(WebApiConfig.Register()); 
              
         }

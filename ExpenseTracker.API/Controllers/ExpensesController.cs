@@ -1,14 +1,15 @@
-﻿using ExpenseTracker.Repository;
-using ExpenseTracker.Repository.Factories;
-using Marvin.JsonPatch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net;
 using System.Web;
+using System.Linq;
 using System.Web.Http;
-using ExpenseTracker.API.Helpers;
+using Marvin.JsonPatch;
 using System.Web.Http.Routing;
+using ExpenseTracker.Repository;
+using System.Collections.Generic;
+using ExpenseTracker.API.Helpers;
+using Thinktecture.IdentityModel.WebApi;
+using ExpenseTracker.Repository.Factories;
 
 namespace ExpenseTracker.API.Controllers
 {
@@ -30,8 +31,8 @@ namespace ExpenseTracker.API.Controllers
         {
             _repository = repository;
         }
-         
 
+        [ResourceAuthorize("Read", "Expense")]
         [Route("expensegroups/{expenseGroupId}/expenses", Name = "ExpensesForGroup")]
         public IHttpActionResult Get(int expenseGroupId, string sort = "date", string fields = null
                                    , int page = 1, int pageSize = maxPageSize)
@@ -105,7 +106,7 @@ namespace ExpenseTracker.API.Controllers
             }
         }
 
-
+        [ResourceAuthorize("Read", "Expense")]
         [VersionedRoute("expensegroups/{expenseGroupId}/expenses/{id}", 1)]
         [VersionedRoute("expenses/{id}", 1)]
         public IHttpActionResult Get(int id, int? expenseGroupId = null, string fields = null)
@@ -153,7 +154,7 @@ namespace ExpenseTracker.API.Controllers
             }
         }
 
-
+        [ResourceAuthorize("Read", "Expense")]
         [VersionedRoute("expensegroups/{expenseGroupId}/expenses/{id}", 1)]
         [VersionedRoute("expenses/{id}", 2)]
         public IHttpActionResult GetV2(int id, int? expenseGroupId = null, string fields = null)
@@ -201,7 +202,7 @@ namespace ExpenseTracker.API.Controllers
             }
         }
 
-
+        [ResourceAuthorize("Write", "Expense")]
         [Route("expenses/{id}")]
         public IHttpActionResult Delete(int id)
         {
@@ -227,6 +228,7 @@ namespace ExpenseTracker.API.Controllers
             }
         }
 
+        [ResourceAuthorize("Write", "Expense")]
         [Route("expenses")]
         public IHttpActionResult Post([FromBody]DTO.Expense expense)
         {
@@ -257,7 +259,7 @@ namespace ExpenseTracker.API.Controllers
             }
         }
 
-
+        [ResourceAuthorize("Write", "Expense")]
         [Route("expenses/{id}")]
         public IHttpActionResult Put(int id, [FromBody]DTO.Expense expense)
         {
@@ -291,7 +293,7 @@ namespace ExpenseTracker.API.Controllers
             }
         }
 
-
+        [ResourceAuthorize("Write", "Expense")]
         [Route("expenses/{id}")]
         [HttpPatch]
         public IHttpActionResult Patch(int id, [FromBody]JsonPatchDocument<DTO.Expense> expensePatchDocument)
@@ -333,8 +335,5 @@ namespace ExpenseTracker.API.Controllers
                 return InternalServerError();
             }
         }
-
-
-         
     }
 }

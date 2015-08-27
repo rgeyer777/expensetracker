@@ -47,13 +47,13 @@ namespace ExpenseTracker.Repository.Factories
             };
         }
 
-        public object CreateDataShapeObject(ExpenseGroup expenseGroup, List<string> listOfFeilds)
+        public object CreateDataShapedObject(ExpenseGroup expenseGroup, List<string> listOfFeilds)
         {
             //pass through from entity to DTO
-            return CreateDataShapeObject(CreateExpenseGroup(expenseGroup), listOfFeilds);
+            return CreateDataShapedObject(CreateExpenseGroup(expenseGroup), listOfFeilds);
         }
 
-        public object CreateDataShapeObject(DTO.ExpenseGroup expenseGroup, List<string> listOfFields)
+        public object CreateDataShapedObject(DTO.ExpenseGroup expenseGroup, List<string> listOfFields)
         {
             List<string> lstOfFieldsToWorkWith = new List<string>(listOfFields);
             

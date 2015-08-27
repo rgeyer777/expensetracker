@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Thinktecture.IdentityModel.WebApi;
 
 namespace ExpenseTracker.API.Controllers
 {
@@ -24,7 +25,7 @@ namespace ExpenseTracker.API.Controllers
             _repository = repository;
         }
 
-         
+        [ResourceAuthorize("Read", "ExpenseGroupStatus")]
         public IHttpActionResult Get()
         {
 
