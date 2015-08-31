@@ -7,7 +7,7 @@
 
         Title="LOGIN"
                       Width="400"
-                      Height="600"
+                      Height="700"
                       Icon="../Resources/Enceptia_WhiteBG.png"
                       ShowMaxRestoreButton="False"
                       ShowIconOnTitleBar="True"
