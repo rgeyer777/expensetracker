@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Web;
 using System.Net;
 using System.Linq;
@@ -11,12 +12,13 @@ using ExpenseTracker.Repository;
 using System.Collections.Generic;
 using ExpenseTracker.API.Helpers;
 using ExpenseTracker.Repository.Factories;
+using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.WebApi;
+using Thinktecture.IdentityServer.Core;
 
 namespace ExpenseTracker.API.Controllers
 {
-    [Authorize]
-    [EnableCors("*", "*", "GET,POST")]
+   
     public class ExpenseGroupsController : ApiController
     {
         IExpenseTrackerRepository _repository;
@@ -43,6 +45,29 @@ namespace ExpenseTracker.API.Controllers
         {
             try
             {
+               Claim issuer = null; 
+               Claim subject = null;
+
+                var identity = this.User.Identity as ClaimsIdentity;
+
+                if (identity != null)
+                {
+                    
+                    issuer = identity.FindFirst(Constants.ClaimTypes.Issuer); 
+                    subject = identity.FindFirst(Constants.ClaimTypes.Subject);
+                }
+
+                //Set the user id to this key
+                if (issuer != null && subject != null)
+                {
+                    userId = issuer.Value + "_" + subject.Value;
+                }
+                else
+                {
+                    //If there is no unique key, do not continue
+                    return StatusCode(HttpStatusCode.Forbidden);
+                }
+
                 bool includeExpenses = false;
                 List<string> lstOfFields = new List<string>();
 

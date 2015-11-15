@@ -25,10 +25,9 @@ namespace ExpenseTracker.API.Controllers
             _repository = repository;
         }
 
-        [ResourceAuthorize("Read", "ExpenseGroupStatus")]
+        //[ResourceAuthorize("Read", "ExpenseGroupStatus")]
         public IHttpActionResult Get()
         {
-
             try
             {
                 // get expensegroupstatusses & map to DTO's
@@ -36,7 +35,6 @@ namespace ExpenseTracker.API.Controllers
                     .Select(egs => _expenseMasterDataFactory.CreateExpenseGroupStatus(egs));
 
                 return Ok(expenseGroupStatusses);
-
             }
             catch (Exception)
             {
